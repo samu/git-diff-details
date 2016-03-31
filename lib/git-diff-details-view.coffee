@@ -102,7 +102,9 @@ module.exports = class AtomGitDiffDetailsView extends View
       @editor.decorateMarker(@newLinesMarker, type: 'line', class: "git-diff-details-new")
 
   populate: (selectedHunk) ->
+    tabLength = @getActiveTextEditor()?.getTabLength() ? atom.config.get('editor.tabLength')
     html = _.escape(selectedHunk.oldString).split(/\r\n?|\n/g)
+                                           .map((line) -> line.replace(/\t/g, '&nbsp;'.repeat(tabLength)))
                                            .map((line) -> line.replace(/\s/g, '&nbsp;'))
                                            .map((line) -> "<div class='line git-diff-details-old'>#{line}</div>")
     @contents.html(html)
