@@ -1,0 +1,63 @@
+@import "ui-variables";
+@import "syntax-variables";
+
+@line-background-color-added: fadeout(@syntax-color-added, 80%);
+@line-background-color-removed: fadeout(@syntax-color-removed, 90%);
+@word-diff-color-added: fadeout(@syntax-color-added, 70%);
+@word-diff-color-removed: fadeout(@syntax-color-removed, 70%);
+
+// Less mixins
+//-------------------
+.plain-text-color() {
+  color: @syntax-text-color !important;
+  span {
+    color: @syntax-text-color !important;
+  }
+  .invisible-character {
+    opacity: 0;
+  }
+}
+//-------------------
+atom-text-editor {
+  &.use-flat-color-for-added-lines .line {
+    &.git-diff-details-added {
+      .plain-text-color();
+    }
+  }
+  .line {
+    &.git-diff-details-added {
+      background-color: @line-background-color-added !important;
+    }
+  }
+
+  // Used for word-level-diff
+  .highlight {
+    &.git-diff-details-added .region {
+      background-color: @word-diff-color-added;
+    }
+  }
+}
+
+// embeded git-diff details container
+.git-diff-details-outer {
+  background-color: @base-background-color;
+  width: 100%;
+  .git-diff-details-main-panel {
+    position: relative;
+  }
+
+  atom-text-editor {
+    background-color: @line-background-color-removed !important;
+    .cursor {
+      visibility: hidden;
+    }
+    &.use-flat-color-for-removed-lines .line {
+      .plain-text-color();
+    }
+    .highlight {
+      &.git-diff-details-removed .region {
+        background-color: @word-diff-color-removed;
+      }
+    }
+  }
+}

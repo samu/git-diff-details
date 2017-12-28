@@ -15,11 +15,53 @@
   "engines": {
     "atom": ">=1.7.0"
   },
+  "activationCommands": {
+    "atom-text-editor": [
+      "git-diff-details:toggle-git-diff-details"
+    ]
+  },
+  "configSchema": {
+    "closeAfterCopy": {
+      "type": "boolean",
+      "default": false,
+      "title": "Close diff view after copy"
+    },
+    "keepViewToggled": {
+      "type": "boolean",
+      "default": true,
+      "title": "Keep view toggled when leaving a diff"
+    },
+    "useFlatColorForAddedLines": {
+      "type": "boolean",
+      "default": true
+    },
+    "useFlatColorForRemovedLines": {
+      "type": "boolean",
+      "default": false
+    },
+    "showWordDiffs": {
+      "type": "boolean",
+      "default": true,
+      "title": "Show word diffs"
+    },
+    "showAllChanges": {
+      "type": "boolean",
+      "default": true,
+      "title": "Show all changes instead of just showing change at cursor line"
+    },
+    "positionToShowRemoved": {
+      "type": "string",
+      "default": "before",
+      "enum": [
+        "before",
+        "after"
+      ]
+    }
+  },
   "dependencies": {
-    "atom-space-pen-views": "^2.0.3",
-    "diff": "^2.2.2",
-    "fs-plus": "^2.0.0",
-    "mixto": "1.x",
-    "underscore-plus": "^1.6.6"
+    "atom-space-pen-views": "^2.0.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.9.2"
   }
 }
