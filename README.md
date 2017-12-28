@@ -1,3 +1,9 @@
+### note by t9md START
+
+Experimenting several ideas.
+
+### note by t9md END
+
 # git-diff-details package
 
 View git diffs directly in atom.
